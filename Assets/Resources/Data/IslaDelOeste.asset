@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: IslaDelOeste
   m_EditorClassIdentifier: 
   nodeName: Isla del Oeste
-  routes: []
+  routes:
+  - target: {fileID: 11400000, guid: 70360f85c1bd7ce49a930f588bd40f2f, type: 2}
+    options:
+    - type: 3
+      days: 0
+      hours: 7
+      minutes: 30
   index: 5

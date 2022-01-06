@@ -13,5 +13,49 @@ MonoBehaviour:
   m_Name: PaisDelTe
   m_EditorClassIdentifier: 
   nodeName: Pais del Te
-  routes: []
-  index: 10
+  routes:
+  - target: {fileID: 11400000, guid: 2b283725eb074fc458d34839a790eb4a, type: 2}
+    options:
+    - type: 0
+      days: 11
+      hours: 9
+      minutes: 0
+    - type: 1
+      days: 5
+      hours: 10
+      minutes: 0
+    - type: 2
+      days: 2
+      hours: 7
+      minutes: 0
+  - target: {fileID: 11400000, guid: 70360f85c1bd7ce49a930f588bd40f2f, type: 2}
+    options:
+    - type: 3
+      days: 3
+      hours: 0
+      minutes: 0
+  - target: {fileID: 11400000, guid: 8e43a979de79cdd4cb5c9b8244748344, type: 2}
+    options:
+    - type: 3
+      days: 4
+      hours: 17
+      minutes: 0
+  - target: {fileID: 11400000, guid: bdbb80eb63b48ba4483b87865e513655, type: 2}
+    options:
+    - type: 3
+      days: 2
+      hours: 1
+      minutes: 30
+  - target: {fileID: 11400000, guid: e009ea7f2894e574c959210827904eb2, type: 2}
+    options:
+    - type: 3
+      days: 2
+      hours: 10
+      minutes: 0
+  - target: {fileID: 11400000, guid: eb2c35d2ff311bb49b34c300ec3b9954, type: 2}
+    options:
+    - type: 3
+      days: 2
+      hours: 3
+      minutes: 30
+  index: 11

@@ -18,13 +18,15 @@ namespace ShinobiPathfinder
         [SerializeField]
         private Text _durationText;
 
-        public void SetData(NodeDataScriptable origin, NodeDataScriptable target, TravelPreferences preferences)
+        // Returning total time in minutes as out param, DIRTY but I don't want to refactor or duplicate stuff
+        public void SetData(NodeDataScriptable origin, NodeDataScriptable target, TravelPreferences preferences, out int totalTimeMin)
         {
             _fromText.text = origin.nodeName;
             _toText.text = target.nodeName;
             var usedRoute = preferences.PickBestTravelOption(GetRoute(origin, target));
             _modeText.text = RouteTypeTexts[usedRoute.type];
             _durationText.text = GetDurationText(usedRoute);
+            totalTimeMin = usedRoute.FullTimeInMinutes;
         }
 
         private Route GetRoute(NodeDataScriptable origin, NodeDataScriptable target)

@@ -13,5 +13,19 @@ MonoBehaviour:
   m_Name: IslaDelAgua
   m_EditorClassIdentifier: 
   nodeName: Isla del Agua
-  routes: []
+  routes:
+  - target: {fileID: 11400000, guid: 70360f85c1bd7ce49a930f588bd40f2f, type: 2}
+    options:
+    - type: 0
+      days: 2
+      hours: 5
+      minutes: 30
+    - type: 1
+      days: 1
+      hours: 3
+      minutes: 0
+    - type: 2
+      days: 0
+      hours: 7
+      minutes: 30
   index: 2

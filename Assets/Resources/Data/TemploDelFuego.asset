@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d66ed0369dad3409d2492c5b08dc5e, type: 3}
+  m_Name: TemploDelFuego
+  m_EditorClassIdentifier: 
+  nodeName: Templo del Fuego
+  routes:
+  - target: {fileID: 11400000, guid: 8e43a979de79cdd4cb5c9b8244748344, type: 2}
+    options:
+    - type: 0
+      days: 8
+      hours: 11
+      minutes: 0
+    - type: 1
+      days: 4
+      hours: 5
+      minutes: 30
+    - type: 2
+      days: 1
+      hours: 13
+      minutes: 0
+  - target: {fileID: 11400000, guid: cdd64a063ec93454386ecb6ac4d8f8f4, type: 2}
+    options:
+    - type: 0
+      days: 11
+      hours: 9
+      minutes: 0
+    - type: 1
+      days: 5
+      hours: 10
+      minutes: 30
+    - type: 2
+      days: 2
+      hours: 7
+      minutes: 0
+  - target: {fileID: 11400000, guid: 43ae8fe11c7e4b145b45d901f1268538, type: 2}
+    options:
+    - type: 0
+      days: 8
+      hours: 5
+      minutes: 0
+    - type: 1
+      days: 4
+      hours: 2
+      minutes: 30
+    - type: 2
+      days: 1
+      hours: 11
+      minutes: 0
+  index: 18

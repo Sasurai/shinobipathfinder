@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: FortalezaShoseki
   m_EditorClassIdentifier: 
   nodeName: Fortaleza Shoseki
-  routes: []
+  routes:
+  - target: {fileID: 11400000, guid: 70360f85c1bd7ce49a930f588bd40f2f, type: 2}
+    options:
+    - type: 3
+      days: 0
+      hours: 15
+      minutes: 0
   index: 1

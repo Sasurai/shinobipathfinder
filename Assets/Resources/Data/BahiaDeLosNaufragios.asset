@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: BahiaDeLosNaufragios
   m_EditorClassIdentifier: 
   nodeName: Bahia de los Naufragios
-  routes: []
+  routes:
+  - target: {fileID: 11400000, guid: 70360f85c1bd7ce49a930f588bd40f2f, type: 2}
+    options:
+    - type: 3
+      days: 2
+      hours: 3
+      minutes: 30
   index: 0

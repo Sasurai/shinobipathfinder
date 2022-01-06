@@ -10,40 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04d66ed0369dad3409d2492c5b08dc5e, type: 3}
-  m_Name: PaisDeLasOlas
+  m_Name: IslaOUzu
   m_EditorClassIdentifier: 
-  nodeName: Pais de las Olas
+  nodeName: Isla O'Uzu
   routes:
-  - target: {fileID: 11400000, guid: d1c87734dcedf334b9b6bd2dffb87744, type: 2}
+  - target: {fileID: 11400000, guid: bdbb80eb63b48ba4483b87865e513655, type: 2}
     options:
     - type: 0
-      days: 10
-      hours: 10
+      days: 18
+      hours: 4
       minutes: 0
     - type: 1
-      days: 5
-      hours: 5
+      days: 9
+      hours: 2
       minutes: 0
     - type: 2
       days: 2
-      hours: 4
-      minutes: 30
-  - target: {fileID: 11400000, guid: 70360f85c1bd7ce49a930f588bd40f2f, type: 2}
-    options:
-    - type: 3
-      days: 1
       hours: 13
       minutes: 0
-  - target: {fileID: 11400000, guid: 1fe9e83cf28ec984eb22e3696a296468, type: 2}
-    options:
-    - type: 3
-      days: 1
-      hours: 18
-      minutes: 0
-  - target: {fileID: 11400000, guid: bd6652ecbd6931c49bcf460009da3f1f, type: 2}
+  - target: {fileID: 11400000, guid: cdd64a063ec93454386ecb6ac4d8f8f4, type: 2}
     options:
     - type: 3
       days: 2
-      hours: 19
+      hours: 1
+      minutes: 30
+  - target: {fileID: 11400000, guid: bdbb80eb63b48ba4483b87865e513655, type: 2}
+    options:
+    - type: 3
+      days: 2
+      hours: 10
       minutes: 0
-  index: 9
+  index: 0

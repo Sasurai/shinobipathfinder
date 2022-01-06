@@ -10,14 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04d66ed0369dad3409d2492c5b08dc5e, type: 3}
-  m_Name: IslaDelSur
+  m_Name: WIPCiudadShukuba
   m_EditorClassIdentifier: 
-  nodeName: Isla del Sur
-  routes:
-  - target: {fileID: 11400000, guid: 70360f85c1bd7ce49a930f588bd40f2f, type: 2}
-    options:
-    - type: 3
-      days: 0
-      hours: 19
-      minutes: 0
-  index: 6
+  nodeName: 
+  routes: []
+  index: 0
