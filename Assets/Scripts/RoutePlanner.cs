@@ -13,6 +13,11 @@ namespace ShinobiPathfinder
             // Not sure this is the best option but it should work and we avoid having to add each node manually somewhere
             dataNodes = Resources.LoadAll<NodeDataScriptable>("Data");
             Debug.Log($"Loaded {dataNodes.Length} data nodes");
-        } 
+        }
+
+        private void PlanRoute(NodeDataScriptable origin, NodeDataScriptable destination, TravelPreferences preferences)
+        {
+
+        }
     }
 }
