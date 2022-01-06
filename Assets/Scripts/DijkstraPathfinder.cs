@@ -15,8 +15,10 @@ namespace ShinobiPathfinder
         int[] _distances;
         NodeDataScriptable[] _previous;
 
-        public void FindPath(NodeDataScriptable origin, NodeDataScriptable destination, TravelPreferences preferences)
+        public IEnumerable<NodeDataScriptable> FindPath(NodeDataScriptable origin, NodeDataScriptable destination, TravelPreferences preferences)
         {
+            Debug.Log($"FindPath: {origin.nodeName}, {destination.nodeName}");
+
             // Initialisation
 
             // We'll use distances as minutes for simplicity here
@@ -44,6 +46,7 @@ namespace ShinobiPathfinder
                 }
                 var node = unexplored[nodeIdx];
                 unexplored.Remove(nodeIdx);
+                Debug.Log($"FindPath Iteration: {node.nodeName}");
 
                 // If node == destination we can stop here and return the route already
                 if (node == destination)
@@ -53,14 +56,14 @@ namespace ShinobiPathfinder
                 ExploreNodeNeighbours(node, preferences);
             }
 
-            var routePlan = RetrieveRoutePlan(origin, destination, preferences);
-
-            // TODO rebuild / print complete route with the plan + PickBestTravelOption calls
+            var routePlan = RetrieveRoutePlan(origin, destination);
 
             // Cleanup
             unexplored.Clear();
             _distances = null;
             _previous = null;
+
+            return routePlan;
         }
 
         private int SelectNextNode(Dictionary<int, NodeDataScriptable> unexplored)
@@ -85,7 +88,11 @@ namespace ShinobiPathfinder
             var dist = _distances[node.index];
             foreach(var route in node.routes)
             {
-                var option = PickBestTravelOption(route, travelPreferences);
+                var option = travelPreferences.PickBestTravelOption(route);
+                if (option == null)
+                {
+                    continue;
+                }
                 var targetIdx = route.target.index;
                 var alternative = dist + option.FullTimeInMinutes;
                 if(alternative < _distances[targetIdx])
@@ -96,7 +103,7 @@ namespace ShinobiPathfinder
             }
         }
 
-        private Stack<NodeDataScriptable> RetrieveRoutePlan(NodeDataScriptable origin, NodeDataScriptable destination, TravelPreferences preferences)
+        private Stack<NodeDataScriptable> RetrieveRoutePlan(NodeDataScriptable origin, NodeDataScriptable destination)
         {
             var plan = new Stack<NodeDataScriptable>();
             var current = destination;
@@ -106,34 +113,8 @@ namespace ShinobiPathfinder
                 current = _previous[current.index];
             }
 
+            plan.Push(origin);
             return plan;
         }
-
-        private RouteData PickBestTravelOption(Route route, TravelPreferences preferences)
-        {
-            foreach(var opt in route.options)
-            {
-                var type = opt.type;
-                if(type == preferences.PrefRouteType)
-                {
-                    return opt;
-                }
-                // TODO if multiple options of ship/train/dirigible are available, it'll pick the first one and ignore the others, even if shorter
-                if(type == RouteType.Ship && preferences.UseShips)
-                {
-                    return opt;
-                }
-                if (type == RouteType.Train && preferences.UseTrains)
-                {
-                    return opt;
-                }
-                if (type == RouteType.Dirigible && preferences.UseDirigibles)
-                {
-                    return opt;
-                }
-            }
-            return null;
-        }
-        
     }
 }

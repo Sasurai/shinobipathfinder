@@ -78,7 +78,7 @@ MonoBehaviour:
       minutes: 0
   - target: {fileID: 11400000, guid: 973c7026412e0d84594b7310d3978bce, type: 2}
     options:
-    - type: 0
+    - type: 3
       days: 1
       hours: 7
       minutes: 0

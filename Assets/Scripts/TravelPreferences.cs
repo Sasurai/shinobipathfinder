@@ -30,5 +30,32 @@ namespace ShinobiPathfinder
         public bool UseShips { get; set; } = true;
         public bool UseTrains { get; set; } = true;
         public bool UseDirigibles { get; set; } = true;
+
+        // TODO: I've seen that some routes have both walking/caravan/ninja and ship/train/dirigible options, not sure this will work as it is
+        public RouteData PickBestTravelOption(Route route)
+        {
+            foreach (var opt in route.options)
+            {
+                var type = opt.type;
+                if (type == PrefRouteType)
+                {
+                    return opt;
+                }
+                // TODO if multiple options of ship/train/dirigible are available, it'll pick the first one and ignore the others, even if shorter
+                if (type == RouteType.Ship && UseShips)
+                {
+                    return opt;
+                }
+                if (type == RouteType.Train && UseTrains)
+                {
+                    return opt;
+                }
+                if (type == RouteType.Dirigible && UseDirigibles)
+                {
+                    return opt;
+                }
+            }
+            return null;
+        }
     }
 }
