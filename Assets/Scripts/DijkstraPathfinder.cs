@@ -17,8 +17,6 @@ namespace ShinobiPathfinder
 
         public IEnumerable<NodeDataScriptable> FindPath(NodeDataScriptable origin, NodeDataScriptable destination, TravelPreferences preferences)
         {
-            Debug.Log($"FindPath: {origin.nodeName}, {destination.nodeName}");
-
             // Initialisation
 
             // We'll use distances as minutes for simplicity here
@@ -46,7 +44,6 @@ namespace ShinobiPathfinder
                 }
                 var node = unexplored[nodeIdx];
                 unexplored.Remove(nodeIdx);
-                Debug.Log($"FindPath Iteration: {node.nodeName}");
 
                 // If node == destination we can stop here and return the route already
                 if (node == destination)
