@@ -4,24 +4,6 @@ using UnityEngine;
 
 namespace ShinobiPathfinder
 {
-    public class RoutePlan : IComparable
-    {
-        public TimeSpan duration;
-        // TODO decide, origin will probably be implicit to avoid repetition
-        public List<NodeDataScriptable> route;
-
-        RoutePlan Clone()
-        {
-            var clone = new RoutePlan { duration = duration, route = new List<NodeDataScriptable>(route) };
-            return clone;
-        }
-
-        public int CompareTo(object obj)
-        {
-            return duration.CompareTo(obj);
-        }
-    }
-
     public class RoutePlanner : MonoBehaviour
     {
         private NodeDataScriptable[] dataNodes;
