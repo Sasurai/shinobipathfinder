@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d66ed0369dad3409d2492c5b08dc5e, type: 3}
   m_Name: Kiri
   m_EditorClassIdentifier: 
-  name: Kiri
+  nodeName: Kiri
   routes:
   - target: {fileID: 11400000, guid: bd38a69bd073d6f408a0e0118550b07d, type: 2}
     options:
@@ -82,3 +82,4 @@ MonoBehaviour:
       days: 1
       hours: 7
       minutes: 0
+  index: 7

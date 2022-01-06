@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d66ed0369dad3409d2492c5b08dc5e, type: 3}
   m_Name: "PaisDeLasMonta\xF1as"
   m_EditorClassIdentifier: 
-  name: "Pais de las Monta\xF1as"
+  nodeName: "Pais de las Monta\xF1as"
   routes: []
+  index: 8

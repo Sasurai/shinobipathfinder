@@ -1,11 +1,16 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ShinobiPathfinder
 {
     public class RoutePlanner : MonoBehaviour
     {
+        // TODO very temporary UI
+        [SerializeField]
+        private Text _text;
+
         private NodeDataScriptable[] dataNodes;
         // Start is called before the first frame update
         void Start()
