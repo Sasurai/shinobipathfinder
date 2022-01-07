@@ -31,14 +31,14 @@ namespace ShinobiPathfinder
         private GameObject _routeViewPrefab;
 
         // Internal stuff
-        private NodeDataScriptable[] dataNodes;
-        private Dictionary<string, NodeDataScriptable> nameDataMap;
+        private NodeDataScriptable[] _dataNodes;
+        private Dictionary<string, NodeDataScriptable> _nameDataMap;
 
         void Start()
         {
             // Not sure this is the best option but it should work and we avoid having to add each node manually somewhere
-            dataNodes = Resources.LoadAll<NodeDataScriptable>("Data");
-            Debug.Log($"Loaded {dataNodes.Length} data nodes");
+            _dataNodes = Resources.LoadAll<NodeDataScriptable>("Data");
+            Debug.Log($"Loaded {_dataNodes.Length} data nodes");
 
             // TODO It may be useful to have some editor only "data validator" here (v.g. check for duplicates in RouteType within a list, etc)
 
@@ -57,7 +57,18 @@ namespace ShinobiPathfinder
             var originTxt = _originDropdown.options[_originDropdown.value].text;
             var targetTxt = _targetDropdown.options[_targetDropdown.value].text;
 
-            PlanRoute(nameDataMap[originTxt], nameDataMap[targetTxt], new TravelPreferences());
+            var preferences = new TravelPreferences();
+            // Hacky, this relies on the internal values of the enum
+            preferences.PrefRouteType = (RouteType)_typeSelectedInt;
+
+            PlanRoute(_nameDataMap[originTxt], _nameDataMap[targetTxt], preferences);
+        }
+
+        private int _typeSelectedInt = 0;
+        // Type selected dropdown handler
+        public void OnTypeChanged(int selection)
+        {
+            _typeSelectedInt = selection;
         }
 
         private void UpdateDropdowns()
@@ -70,7 +81,7 @@ namespace ShinobiPathfinder
         private void UpdateDropdown(Dropdown dropdown)
         {
             var options = new List<string>();
-            foreach(var node in dataNodes)
+            foreach(var node in _dataNodes)
             {
                 options.Add(node.nodeName);
             }
@@ -80,7 +91,7 @@ namespace ShinobiPathfinder
 
         private void PlanRoute(NodeDataScriptable origin, NodeDataScriptable destination, TravelPreferences preferences)
         {
-            var pathfinder = new DijkstraPathfinder(dataNodes);
+            var pathfinder = new DijkstraPathfinder(_dataNodes);
             var route = pathfinder.FindPath(origin, destination, preferences);
             NodeDataScriptable current = null;
             NodeDataScriptable first = null;
@@ -107,10 +118,10 @@ namespace ShinobiPathfinder
 
         private void PopulateNameDataMap()
         {
-            nameDataMap = new Dictionary<string, NodeDataScriptable>(dataNodes.Length);
-            foreach(var node in dataNodes)
+            _nameDataMap = new Dictionary<string, NodeDataScriptable>(_dataNodes.Length);
+            foreach(var node in _dataNodes)
             {
-                nameDataMap.Add(node.nodeName, node);
+                _nameDataMap.Add(node.nodeName, node);
             }
         }
         // This is pretty much copy-pasted from RouteEntryView.GetDurationText

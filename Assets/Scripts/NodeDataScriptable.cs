@@ -40,9 +40,9 @@ namespace ShinobiPathfinder
 
     public enum RouteType
     {
-        Walking,
-        Caravan,
-        Ninja,
+        Walking = 0,
+        Caravan = 1,
+        Ninja = 2,
         Ship,
         Train,
         Dirigible
