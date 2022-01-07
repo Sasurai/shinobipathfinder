@@ -8,7 +8,19 @@ namespace ShinobiPathfinder
 {
     public class RoutePlanner : MonoBehaviour
     {
-        // UI Stuff
+        // Canvases references (for showing & hiding)
+        [SerializeField]
+        private GameObject _inputCanvas;
+        [SerializeField]
+        private GameObject _resultsCanvas;
+
+        // Input UI
+        [SerializeField]
+        private Dropdown _originDropdown;
+        [SerializeField]
+        private Dropdown _targetDropdown;
+
+        // Results UI
         [SerializeField]
         private Text _titleText;
         [SerializeField]
@@ -18,14 +30,10 @@ namespace ShinobiPathfinder
         [SerializeField]
         private GameObject _routeViewPrefab;
 
-        // Hacky for testing, set origin and target from editor
-        [SerializeField]
-        private NodeDataScriptable _origin;
-        [SerializeField]
-        private NodeDataScriptable _target;
-
+        // Internal stuff
         private NodeDataScriptable[] dataNodes;
-        // Start is called before the first frame update
+        private Dictionary<string, NodeDataScriptable> nameDataMap;
+
         void Start()
         {
             // Not sure this is the best option but it should work and we avoid having to add each node manually somewhere
@@ -34,7 +42,40 @@ namespace ShinobiPathfinder
 
             // TODO It may be useful to have some editor only "data validator" here (v.g. check for duplicates in RouteType within a list, etc)
 
-            PlanRoute(_origin, _target, new TravelPreferences());
+            PopulateNameDataMap();
+
+            _resultsCanvas.SetActive(false);
+            UpdateDropdowns();
+        }
+
+        // OnClick handler
+        public void OnSearchRoute()
+        {
+            _inputCanvas.SetActive(false);
+            _resultsCanvas.SetActive(true);
+
+            var originTxt = _originDropdown.options[_originDropdown.value].text;
+            var targetTxt = _targetDropdown.options[_targetDropdown.value].text;
+
+            PlanRoute(nameDataMap[originTxt], nameDataMap[targetTxt], new TravelPreferences());
+        }
+
+        private void UpdateDropdowns()
+        {
+            UpdateDropdown(_originDropdown);
+            UpdateDropdown(_targetDropdown);
+        }
+
+        // TODO for search option: Add filtering parameter
+        private void UpdateDropdown(Dropdown dropdown)
+        {
+            var options = new List<string>();
+            foreach(var node in dataNodes)
+            {
+                options.Add(node.nodeName);
+            }
+            dropdown.ClearOptions();
+            dropdown.AddOptions(options);
         }
 
         private void PlanRoute(NodeDataScriptable origin, NodeDataScriptable destination, TravelPreferences preferences)
@@ -64,6 +105,14 @@ namespace ShinobiPathfinder
             _totalTimeText.text = $"Tiempo total: {GetTotalTimeString(totalTime)}";
         }
 
+        private void PopulateNameDataMap()
+        {
+            nameDataMap = new Dictionary<string, NodeDataScriptable>(dataNodes.Length);
+            foreach(var node in dataNodes)
+            {
+                nameDataMap.Add(node.nodeName, node);
+            }
+        }
         // This is pretty much copy-pasted from RouteEntryView.GetDurationText
         private string GetTotalTimeString(int time)
         {
