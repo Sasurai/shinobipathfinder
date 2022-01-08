@@ -33,6 +33,8 @@ namespace ShinobiPathfinder
         // Internal stuff
         private NodeDataScriptable[] _dataNodes;
         private Dictionary<string, NodeDataScriptable> _nameDataMap;
+        private TravelPreferences _travelPreferences = new TravelPreferences();
+
 
         void Start()
         {
@@ -57,11 +59,29 @@ namespace ShinobiPathfinder
             var originTxt = _originDropdown.options[_originDropdown.value].text;
             var targetTxt = _targetDropdown.options[_targetDropdown.value].text;
 
-            var preferences = new TravelPreferences();
             // Hacky, this relies on the internal values of the enum
-            preferences.PrefRouteType = (RouteType)_typeSelectedInt;
+            _travelPreferences.PrefRouteType = (RouteType)_typeSelectedInt;
 
-            PlanRoute(_nameDataMap[originTxt], _nameDataMap[targetTxt], preferences);
+            PlanRoute(_nameDataMap[originTxt], _nameDataMap[targetTxt], _travelPreferences);
+        }
+
+        // Option toggle handlers (Ship, Train, Dirigible)
+        public void OnShipOptionToggle(bool opt)
+        {
+            _travelPreferences.UseShips = opt;
+            Debug.Log($"SHIP {opt}");
+        }
+
+        public void OnTrainOptionToggle(bool opt)
+        {
+            _travelPreferences.UseTrains = opt;
+            Debug.Log($"TRAIN {opt}");
+        }
+
+        public void OnDirigibleOptionToggle(bool opt)
+        {
+            _travelPreferences.UseDirigibles = opt;
+            Debug.Log($"DIRIGIBLE {opt}");
         }
 
         private int _typeSelectedInt = 0;
