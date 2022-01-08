@@ -72,6 +72,17 @@ namespace ShinobiPathfinder
             _inputCanvas.SetActive(true);
         }
 
+        // Search filters OnValueChanged handlers (input fields)
+        public void OnFromFilterChanged(string filter)
+        {
+            UpdateDropdown(_originDropdown, filter);
+        }
+
+        public void OnToFilterChanged(string filter)
+        {
+            UpdateDropdown(_targetDropdown, filter);
+        }
+
         // Option toggle handlers (Ship, Train, Dirigible)
         public void OnShipOptionToggle(bool opt)
         {
@@ -97,17 +108,19 @@ namespace ShinobiPathfinder
 
         private void UpdateDropdowns()
         {
-            UpdateDropdown(_originDropdown);
-            UpdateDropdown(_targetDropdown);
+            UpdateDropdown(_originDropdown, String.Empty);
+            UpdateDropdown(_targetDropdown, String.Empty);
         }
 
-        // TODO for search option: Add filtering parameter
-        private void UpdateDropdown(Dropdown dropdown)
+        private void UpdateDropdown(Dropdown dropdown, string filter)
         {
             var options = new List<string>();
             foreach(var node in _dataNodes)
             {
-                options.Add(node.nodeName);
+                if (node.nodeName.StartsWith(filter, true, System.Globalization.CultureInfo.CurrentCulture))
+                {
+                    options.Add(node.nodeName);
+                }
             }
             dropdown.ClearOptions();
             dropdown.AddOptions(options);
