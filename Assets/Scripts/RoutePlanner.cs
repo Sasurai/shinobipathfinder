@@ -50,7 +50,7 @@ namespace ShinobiPathfinder
             UpdateDropdowns();
         }
 
-        // OnClick handler
+        // SearchButton OnClick handler
         public void OnSearchRoute()
         {
             _inputCanvas.SetActive(false);
@@ -63,6 +63,13 @@ namespace ShinobiPathfinder
             _travelPreferences.PrefRouteType = (RouteType)_typeSelectedInt;
 
             PlanRoute(_nameDataMap[originTxt], _nameDataMap[targetTxt], _travelPreferences);
+        }
+
+        // BackButton OnClick handler
+        public void OnBack()
+        {
+            _resultsCanvas.SetActive(false);
+            _inputCanvas.SetActive(true);
         }
 
         // Option toggle handlers (Ship, Train, Dirigible)
