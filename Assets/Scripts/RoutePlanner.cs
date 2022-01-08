@@ -111,6 +111,12 @@ namespace ShinobiPathfinder
 
         private void PlanRoute(NodeDataScriptable origin, NodeDataScriptable destination, TravelPreferences preferences)
         {
+            // Same node edge case
+            if(origin == destination)
+            {
+                _titleText.text = $"Te quedas en {origin.nodeName}.";
+            }
+
             var pathfinder = new DijkstraPathfinder(_dataNodes);
             var route = pathfinder.FindPath(origin, destination, preferences);
             NodeDataScriptable current = null;
