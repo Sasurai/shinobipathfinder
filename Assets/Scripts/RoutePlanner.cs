@@ -69,19 +69,16 @@ namespace ShinobiPathfinder
         public void OnShipOptionToggle(bool opt)
         {
             _travelPreferences.UseShips = opt;
-            Debug.Log($"SHIP {opt}");
         }
 
         public void OnTrainOptionToggle(bool opt)
         {
             _travelPreferences.UseTrains = opt;
-            Debug.Log($"TRAIN {opt}");
         }
 
         public void OnDirigibleOptionToggle(bool opt)
         {
             _travelPreferences.UseDirigibles = opt;
-            Debug.Log($"DIRIGIBLE {opt}");
         }
 
         private int _typeSelectedInt = 0;
@@ -115,10 +112,20 @@ namespace ShinobiPathfinder
             if(origin == destination)
             {
                 _titleText.text = $"Te quedas en {origin.nodeName}.";
+                _totalTimeText.text = String.Empty;
+                return;
             }
 
             var pathfinder = new DijkstraPathfinder(_dataNodes);
             var route = pathfinder.FindPath(origin, destination, preferences);
+
+            if(route == null)
+            {
+                _titleText.text = $"No se ha podido encontrar ruta de {origin.nodeName} a {destination.nodeName}.";
+                _totalTimeText.text = "Esto puede ser causado por modos de viaje desactivados.";
+                return;
+            }
+
             NodeDataScriptable current = null;
             NodeDataScriptable first = null;
             var totalTime = 0;

@@ -39,8 +39,8 @@ namespace ShinobiPathfinder
                 var nodeIdx = SelectNextNode(unexplored);
                 if(nodeIdx == -1)
                 {
-                    Debug.LogError("Couldn't find any more connected nodes");
-                    break;
+                    Debug.LogWarning("Couldn't find any more connected nodes");
+                    return null; // Couldn't find a route
                 }
                 var node = unexplored[nodeIdx];
                 unexplored.Remove(nodeIdx);
