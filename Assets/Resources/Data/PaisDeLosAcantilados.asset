@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d66ed0369dad3409d2492c5b08dc5e, type: 3}
+  m_Name: PaisDeLosAcantilados
+  m_EditorClassIdentifier: 
+  nodeName: Reino de los Acantilados
+  routes:
+  - target: {fileID: 11400000, guid: 60b5d3b76bf1d6149a4c3d1dd0a6caff, type: 2}
+    options:
+    - type: 0
+      days: 9
+      hours: 1
+      minutes: 0
+    - type: 1
+      days: 4
+      hours: 6
+      minutes: 30
+    - type: 2
+      days: 1
+      hours: 13
+      minutes: 0
+  - target: {fileID: 11400000, guid: fa5ddfcff9144f2418ef966c94440690, type: 2}
+    options:
+    - type: 0
+      days: 13
+      hours: 12
+      minutes: 0
+    - type: 1
+      days: 6
+      hours: 12
+      minutes: 0
+    - type: 2
+      days: 2
+      hours: 14
+      minutes: 0
+  - target: {fileID: 11400000, guid: 60b5d3b76bf1d6149a4c3d1dd0a6caff, type: 2}
+    options:
+    - type: 5
+      days: 0
+      hours: 6
+      minutes: 30
+  - target: {fileID: 11400000, guid: fa5ddfcff9144f2418ef966c94440690, type: 2}
+    options:
+    - type: 5
+      days: 0
+      hours: 6
+      minutes: 30
+  - target: {fileID: 11400000, guid: bd6652ecbd6931c49bcf460009da3f1f, type: 2}
+    options:
+    - type: 3
+      days: 3
+      hours: 23
+      minutes: 0
+  - target: {fileID: 11400000, guid: eb2c35d2ff311bb49b34c300ec3b9954, type: 2}
+    options:
+    - type: 3
+      days: 2
+      hours: 22
+      minutes: 0
+  index: 0
